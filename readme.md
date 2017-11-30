@@ -6,6 +6,8 @@ It's very much a work in progress and currently exports one method, `addSourceAn
 
 It also Promisifies the adding of the source and the adding of the layer(s). A Promise is resolved within the local scope of the function when the layer is successfully added to the map, and the layers are added only after that resolution. The function returns a Promise to the outer scope (your code) which resolves true when all the layers added are ready for further interaction. You chain your next actions onto the resolution of that Promise.
 
+**Important note:** the module uses ES6 syntax and APIs. It's configured in its package.json and .babelrc file to be transpiled to work in browsers ( "last 2 versions", "> 1%" ) by babelify via Browserify when / if that is part of the buld process of the project that `require`s it. If that's not part of your process, the module, as far as I undestand, will be imported into your code without being transpiled first and so may not work in all browsers / runtime environments without futher doing on your end.
+
 ## Why?
 
 With mapbox, adding a source sometimes doesn't take effect quickly enough to immediately support adding a map layer based on it. Similarly, adding a layer sometimes doesn't take effect quickly enough for you to immediately interact with it. You can work around this by listening for the maps render event and checking on render if the source or layer exists before continuing.
@@ -15,9 +17,11 @@ That's tedious and repetitive. This method makes it less so.
 ## How to use
 
 **Install it**
+
  `npm install mapbox-helper --save-dev`
 
 **Import it**
+
 ```javascript
 // your code
 var mbHelper = require('mapbox-helper');
@@ -25,6 +29,7 @@ var mbHelper = require('mapbox-helper');
 ``` 
 
  **Use it**
+
  Call the `addSourceAndLayers` method with the map as the context and two parameters, the source config object and an array of layer config objects (or just one):
 
  `mbHelper.addSourceAndLayers.call(<map reference>, <source config object>, <array of layer config objects>);`
