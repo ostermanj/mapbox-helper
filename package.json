@@ -1,6 +1,6 @@
 {
   "name": "mapbox-helper",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Some utilities to simplify repeated mapbox methods and patterns and to Promisify some actions like adding sources and adding layers",
   "main": "index.js",
   "author": "John Osterman <ostermanj@gmail.com> (http://osterman.io)",
