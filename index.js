@@ -1,4 +1,4 @@
-exports.mbHelper = {
+const mbHelper = {
     promises: {},
     addSourceAndLayers(sourceOptions,layerOptionsArray){ // this = map
         var sourceName = sourceOptions.name;
@@ -36,3 +36,5 @@ exports.mbHelper = {
         });
     }
 };
+
+exports.addSourceAndLayers = mbHelper.addSourceAndLayers;
