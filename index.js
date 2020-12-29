@@ -22,7 +22,8 @@ const mbHelper = {
                         delete each.beforeLayer;
                         each.source = sourceName;
                         function checkLayerLoaded(){
-                            if ( this.getLayer(each.id) ){ // if addLayer  has taken effect
+                            // if layer is set to visibility: none, resolve as soon as `getLayer` returns truthy; otherwise need to wait until features are rendered
+                            if ( (each.layout && each.layout.visibility == 'none' && this.getLayer(each.id) ) || this.queryRenderedFeatures({layers: [each.id]})[0] ){ // if addLayer  has taken effect
                                 resolve(true);
                                 this.off('render', checkLayerLoaded); // turn off the listener for render
                             }
