@@ -2,9 +2,9 @@
 
 This module will supply some helper functions to help developers working with [Mapbox GL JS](https://www.mapbox.com/mapbox-gl-js/api/).
 
-It's very much a work in progress and currently exports one method, `addSourceAndLayers`, which allows you to combine mapbox's native `addSource` and `addLayer` methods into one function, with the ability to add one layer or more  at a time (with the same source).
+It's very much a work in progress and currently exports one method, `addSourceAndLayers`, which allows you to combine mapbox's native `addSource` and `addLayer` methods into one function, with the ability to add one layer or more at a time (with the same source).
 
-It also Promisifies the adding of the source and the adding of the layer(s). A Promise is resolved within the local scope of the function when the layer is successfully added to the map, and the layers are added only after that resolution. The function returns a Promise to the outer scope (your code) which resolves true when all the layers added are ready for further interaction. You chain your next actions onto the resolution of that Promise.
+It also Promisifies the adding of the source and the adding of the layer(s). A Promise is resolved within the local scope of the function when the source is successfully added to the map, and the layers are added only after that resolution. The function returns a Promise to the outer scope (your code) which resolves true when all the layers added are ready for further interaction. Visible layers resolve only after `queryRenderedFeatures()` returns truthy for the layer. You can chain your next actions onto the resolution of that Promise.
 
 **Important note:** the module uses ES6 syntax and APIs. It's configured in its package.json and .babelrc file to be transpiled to work in browsers ( "last 2 versions", "> 1%" ) by babelify via Browserify when / if that is part of the buld process of the project that `require`s it. If that's not part of your process, the module, as far as I undestand, will be imported into your code without being transpiled first and so may not work in all browsers / runtime environments without futher doing on your end.
 
